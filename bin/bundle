@@ -20,11 +20,20 @@ m = Module.new do
   end
 
   def cli_arg_version
-    return unless invoked_as_script? # don't want to hijack other binstubs
-    return unless 'update'.start_with?(ARGV.first || ' ') # must be running `bundle update`
+    # don't want to hijack other binstubs && must be running `bundle update`
+    return unless invoked_as_script? && running_bundle_update?
 
+    extract_bundler_update
+  end
+
+  def running_bundle_update?
+    'update'.start_with?(ARGV.first || ' ')
+  end
+
+  def extract_bundler_update
     bundler_version = nil
     update_index = nil
+
     ARGV.each_with_index do |a, i|
       bundler_version = a if update_index && update_index.succ == i && a =~ Gem::Version::ANCHORED_VERSION_PATTERN
       next unless a =~ /\A--bundler(?:[= ](#{Gem::Version::VERSION_PATTERN}))?\z/
@@ -32,6 +41,7 @@ m = Module.new do
       bundler_version = Regexp.last_match(1)
       update_index = i
     end
+
     bundler_version
   end
 
@@ -94,7 +104,12 @@ m = Module.new do
       return
     end
 
-    warn "Activating bundler (#{bundler_requirement}) failed:\n#{gem_error.message}\n\nTo install the version of bundler this project requires, run `gem install bundler -v '#{bundler_requirement}'`"
+    message = "Activating bundler (#{bundler_requirement}) failed:\n" \
+              "#{gem_error.message}\n\n" \
+              'To install the version of bundler this project requires, run '\
+              "`gem install bundler -v '#{bundler_requirement}'`"
+
+    warn message
     exit 42
   end
 
