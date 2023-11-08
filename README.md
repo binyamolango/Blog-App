@@ -1,4 +1,4 @@
-# OOP-school-library
+# Blog-App
 
 <a name="readme-top"></a>
 
@@ -15,7 +15,7 @@
   - [Install](#install)
   - [Usage](#usage)
   - [Run tests](#run-tests)
-  - [Deployment](#triangular_flag_on_post-deployment)
+  - [Deployment](#deployment)
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
@@ -24,24 +24,29 @@
 - [❓ FAQ](#faq)
 - [📝 License](#license)
 
-# 📖 OOP-school-library <a name="about-project"></a>
+# 📖 Blog-App <a name="about-project"></a>
 
-**OOP-school-library** is an app that will allow the librarian to add new students or teachers, add new books, and save records of who borrowed a given book and when.
+**Blog-App** is a fully functional blog website that will create and show the list of posts, and empower readers to interact with them by adding comments and liking posts.
 
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
 
 <details>
-<summary>Database</summary>
+<summary>Backend</summary>
   <ul>
     <li><a href="https://www.ruby-lang.org/en/">Ruby</a></li>
+    <li><a href="https://rubyonrails.org/">Ruby on Rails</a></li>
+    <li><a href="https://www.postgresql.org/">Postgres</a></li>
   </ul>
 </details>
 
 ### Key Features <a name="key-features"></a>
 
-- **Added a person, student, and teacher classes**
+- **Create posts**
+- **Show the list of posts**
+- **Add comments to posts**
+- **Add likes to posts**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -60,20 +65,20 @@ Now you can start using Ruby!
 
 ### Prerequisites
 
-In order to run this project you need:
+To run this project you need to:
 
-- Have installed Ruby
+- Have installed Ruby and Rails
 
 ### Setup
 
 Clone this repository to your desired folder:
 
-  cd desire-folder
-  git clone https://github.com/binyamolango/OOP-school-library
+  `cd desire-folder`
+  `git clone https://github.com/binyamolango/Blog-App`
 
 ### Install
 
-No installation is needed.
+run `bundle install`
 
 ### Usage
 
@@ -109,7 +114,7 @@ No deployment has been made yet.
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- Terminal App
+- UI
 - Optimizing query time
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -132,7 +137,7 @@ If you like this project please give it a star.
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to thank Microverse.
+I would like to thank My God, family, friends, teammates, and Microverse.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
