@@ -3,8 +3,10 @@ class Post < ActiveRecord::Base
   has_many :likes
   has_many :comments
 
+  after_create :update_posts_counter
+
   def update_posts_counter
-    author.!increment(:posts_count)
+    author.increment!(:posts_count)
   end
 
   def recent_comments
