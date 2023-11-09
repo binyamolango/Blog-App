@@ -1,3 +1,3 @@
 class User < ActiveRecord
-  has_many :posts
+  has_many :posts, :likes, :comments
 end
