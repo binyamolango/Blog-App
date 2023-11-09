@@ -1,4 +1,5 @@
-class Post < ActiveRecord
+class Post < ActiveRecord::Base
   belongs_to :author
-  has_many :likes, :comments
+  has_many :likes
+  has_many :comments
 end
