@@ -3,6 +3,8 @@ class Post < ActiveRecord::Base
   has_many :likes
   has_many :comments
 
+  validates :title, presence: true
+
   after_create :update_posts_counter
 
   def update_posts_counter
