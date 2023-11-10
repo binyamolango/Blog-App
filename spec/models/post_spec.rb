@@ -10,6 +10,11 @@ RSpec.describe Post, type: :model do
     expect(subject).to_not be_valid
   end
 
+  it 'title character should be maximum of 250' do
+    subject.title = 'a' * 251
+    expect(subject).to_not be_valid
+  end
+
   it 'text should be present' do
     expect(subject.text).to eq 'This is my first post'
   end
