@@ -3,7 +3,8 @@ class Post < ActiveRecord::Base
   has_many :likes
   has_many :comments
 
-  validates :title, presence: true
+  validates :title, presence: true, length: { maximum: 250 }
+  
 
   after_create :update_posts_counter
 
