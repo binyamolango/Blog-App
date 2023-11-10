@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  #tests go here
+  # tests go here
   user1 = User.new(name: 'Binyam', photo: 'url', bio: 'Hi there', posts_count: 3)
   subject { Post.new(author: user1, title: 'Hello', text: 'This is my first post', comments_count: 2, likes_count: 3) }
 
@@ -11,7 +11,7 @@ RSpec.describe Post, type: :model do
   end
 
   it 'text should be present' do
-    expect(subject.text).to eq "This is my first post"
+    expect(subject.text).to eq 'This is my first post'
   end
 
   it 'comments_count should be integer' do

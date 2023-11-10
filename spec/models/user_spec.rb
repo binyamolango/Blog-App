@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  #tests go here
-  subject { User.new(name: 'Binyam', photo: 'url', bio: 'Hi there', posts_count: 3 ) }
+  # tests go here
+  subject { User.new(name: 'Binyam', photo: 'url', bio: 'Hi there', posts_count: 3) }
 
   it 'name should be present' do
     subject.name = nil
@@ -10,11 +10,11 @@ RSpec.describe User, type: :model do
   end
 
   it 'photo should have url' do
-    expect(subject.photo).to eq "url"
+    expect(subject.photo).to eq 'url'
   end
 
   it 'bio should be present' do
-    expect(subject.bio).to eq "Hi there"
+    expect(subject.bio).to eq 'Hi there'
   end
 
   it 'posts_count should be integer' do
