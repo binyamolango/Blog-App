@@ -4,8 +4,6 @@ RSpec.describe User, type: :model do
   #tests go here
   subject { User.new(name: 'Binyam', photo: 'url', bio: 'Hi there', posts_count: 3 ) }
 
-  before { subject.save }
-
   it 'name should be present' do
     subject.name = nil
     expect(subject).to_not be_valid

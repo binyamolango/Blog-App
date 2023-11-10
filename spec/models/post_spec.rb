@@ -2,9 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
   #tests go here
-  subject { Post.new(title: 'Hello', text: 'This is my first post', comments_count: 2, likes_count: 3) }
-
-  before { subject.save }
+  user1 = User.new(name: 'Binyam', photo: 'url', bio: 'Hi there', posts_count: 3)
+  subject { Post.new(author: user1, title: 'Hello', text: 'This is my first post', comments_count: 2, likes_count: 3) }
 
   it 'title should be present' do
     subject.title = nil
@@ -33,6 +32,11 @@ RSpec.describe Post, type: :model do
   it 'likes_count should be greater or equal to zero' do
     subject.likes_count = -4
     expect(subject).to_not be_valid
+  end
+
+  it '#update_posts_counter method should increment posts_count in user model' do
+    subject.update_posts_counter
+    expect(user1.posts_count).to eq 4
   end
 
   it '#recent_comments method should display 5 recent comments' do
