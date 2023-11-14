@@ -81,7 +81,7 @@ No command has existed until now.
 
 To run tests, run the following command:
 
-No tests have been created yet for this project.
+run `rspec`
 
 ### Deployment
 
