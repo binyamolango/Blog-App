@@ -14,6 +14,7 @@ RSpec.describe 'Users', type: :request do
       user = User.create(name: 'Binyam', photo: 'url', bio: 'I am a software developer.')
       get user_url(user)
       expect(response).to be_successful
+      expect(response).to render_template(:show)
       expect(response.body).to include('Here is a specific user.')
     end
   end
