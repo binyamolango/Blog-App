@@ -22,7 +22,7 @@ ul {
 
 a {
   text-decoration: none;
-  color: default;
+  color: black;
 }
 
 p {
@@ -97,12 +97,14 @@ button:active {
 
 /* style the users#show page */
 
-.user_bio {
+.user_bio,
+.post_list_show {
   margin: 2em 0;
 }
 
 .user_bio,
-.post_item {
+.post_item,
+.post_comments {
   padding: 0.3em 0.75em 0.75em 0.4em;
   border-radius: 3px;
   border: 1px solid lightgray;
@@ -116,7 +118,8 @@ button:active {
   border: 2px solid gray;
 }
 
-.show_title {
+.show_title,
+.post_title {
   margin-bottom: 1.5em;
 }
 
@@ -128,4 +131,10 @@ button:active {
 .btn_cont {
   text-align: center;
   margin-top: 1em;
+}
+
+/* style posts#index */
+
+.post_comments {
+  margin-top: 0.125em;
 }
