@@ -60,7 +60,7 @@ button:active {
 .row {
   display: flex;
   justify-content: space-between;
-  gap: 2em;
+  gap: 1.5em;
 }
 
 /* style the users#index page */
@@ -88,11 +88,18 @@ button:active {
 
 .user_desc {
   width: 100%;
-  padding: 1em 0.75em;
+  height: 100%;
+  padding: 0.5em 0.75em;
+  gap: 0;
+  justify-content: center;
 }
 
 .user_post_number {
   text-align: right;
+}
+
+.user_name {
+  line-height: 0.8;
 }
 
 /* style the users#show page */
@@ -138,3 +145,7 @@ button:active {
 .post_comments {
   margin-top: 0.125em;
 }
+
+/* style post#show */
+
+
