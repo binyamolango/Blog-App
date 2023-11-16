@@ -1,18 +1,20 @@
-<div class="users">
+<div class="users container">
 
-  <ul class="user_list">
+  <ul class="user_list col">
     <% @users.each do |user| %>
 
-      <li class="user_item">
+      <li class="user_item row">
         <div class="user_img">
           <img src=<%= user.photo %> alt="user_img">
         </div>
-        <a href=<%= user_url(user.id) %>>
-          <div class="user_desc">
+        
+        <div class="user_desc">
+          <a href=<%= user_url(user.id) %>>
             <h2 class="user_name"><%= user.name %></h2>
-            <p class="user_post_number">Number of posts: <%= user.posts_count %></p>
-          </div>
-        </a>
+          </a>
+          <p class="user_post_number">Number of posts: <%= user.posts_count %></p>  
+        </div>
+       
       </li>
       
     <% end %>
