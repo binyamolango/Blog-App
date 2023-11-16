@@ -13,26 +13,26 @@
   <ul class="post_list">
 
     <% @posts.each do |post| %>
+      <a href=<%= user_post_url(user_id: @user.id, id: post.id) %>>
+        <li class="post_item_desc">
 
-      <li class="post_item_desc">
+          <div class="post_item">
+            <h4><%= post.title %></h4>
+            <p class="post_text"><%= post.text %></p>
+            <p class="comments_likes">
+              Comments: <%= post.comments_count %>, 
+              Likes: <%= post.likes_count %>
+            </p>
+          </div>
 
-        <div class="post_item">
-          <h4><%= post.title %></h4>
-          <p class="post_text"><%= post.text %></p>
-          <p class="comments_likes">
-            Comments: <%= post.comments_count %>, 
-            Likes: <%= post.likes_count %>
-          </p>
-        </div>
+          <div class="post_comments">
+            <% post.recent_comments.each do |comment| %>
+              <p class="comment"><%= comment.user.name %>: <%= comment.text %></p>
+            <% end %>
+          </div>
 
-        <div class="post_comments">
-          <% post.recent_comments.each do |comment| %>
-            <p class="comment"><%= comment.user.name %>: <%= comment.text %></p>
-          <% end %>
-        </div>
-
-      </li>
-
+        </li>
+      </a>
     <% end %>
   </ul>
 

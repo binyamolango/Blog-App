@@ -28,8 +28,10 @@
     <% end %>
   </ul>
 
-  <div class="btn_cont">
-    <button class="btn">See all posts</button>
-  </div>
+  <a href=<%= user_posts_url(user_id: @user.id) %>>
+    <div class="btn_cont">
+      <button class="btn">See all posts</button>
+    </div>
+  </a>
 
 </div>
