@@ -8,12 +8,14 @@
           <img src=<%= user.photo %> alt="user_img">
         </div>
         
-        <div class="user_desc">
+        <div class="user_desc_cont">
           <a href=<%= user_url(user.id) %>>
-            <h2 class="user_name"><%= user.name %></h2>
+            <div class="user_desc">
+              <h2 class="user_name"><%= user.name %></h2>
+              <p class="user_post_number">Number of posts: <%= user.posts_count %></p>  
+            </div>
           </a>
-          <p class="user_post_number">Number of posts: <%= user.posts_count %></p>  
-        </div>
+        </div> 
        
       </li>
       

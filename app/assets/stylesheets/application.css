@@ -1,3 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
 img {
   max-width: 100%;
 }
@@ -11,8 +25,24 @@ a {
   color: default;
 }
 
+p {
+  font-size: 0.75rem;
+}
+
 button {
   cursor: pointer;
+  background: none;
+  border-radius: 3px;
+  border: 2px solid lightgray;
+  padding: 0.5em 1em;
+}
+
+button:hover {
+  border: 3px solid lightgray;
+}
+
+button:active {
+  border: 3px solid gray
 }
 
 .container {
@@ -24,7 +54,7 @@ button {
 .col {
   display: flex;
   flex-direction: column;
-  gap: 2em;
+  gap: 1em;
 }
 
 .row {
@@ -33,16 +63,69 @@ button {
   gap: 2em;
 }
 
-.user_item {
-  height: 150px;
-}
+/* style the users#index page */
 
 .user_img {
   width: 30%;
-  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user_desc_cont {
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid lightgray;
+}
+
+.user_desc_cont:hover {
+  border: 2px solid lightgray;
+}
+
+.user_desc_cont:active {
+  border: 2px solid gray;
 }
 
 .user_desc {
-  border: 2px solid lightgray;
   width: 100%;
+  padding: 1em 0.75em;
+}
+
+.user_post_number {
+  text-align: right;
+}
+
+/* style the users#show page */
+
+.user_bio {
+  margin: 2em 0;
+}
+
+.user_bio,
+.post_item {
+  padding: 0.3em 0.75em 0.75em 0.4em;
+  border-radius: 3px;
+  border: 1px solid lightgray;
+}
+
+.post_item:hover {
+  border: 2px solid lightgray;
+}
+
+.post_item:active {
+  border: 2px solid gray;
+}
+
+.show_title {
+  margin-bottom: 1.5em;
+}
+
+.comments_likes {
+  font-size: 0.6rem;
+  text-align: right;
+}
+
+.btn_cont {
+  text-align: center;
+  margin-top: 1em;
 }
