@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
+<div class="post_desc container">
 
-  <body>
-    <h1>Here is a specific post for a given user.</h1>
-  </body>
-</html>
+  <div class="post_detail">
+    <div class="post_header">
+      <h4 class="post_title"><%= @post.title %> by <%= @post.author.name %></h4>
+      <p class="comments_likes">
+        Comments: <%= @post.comments_count %>, 
+        Likes: <%= @post.likes_count %>
+      </p>
+    </div>
+
+    <div class="post_body">
+      <p><%= @post.text %></p>
+    </div>
+  </div>
+
+  <div class="post_comments">
+    <ul class="post_comments_list">
+      <% @post.comments.each do |comment| %>
+        <li class="post_comments_item">
+          <p class="comment"><%= comment.user.name %>: <%= comment.text %></p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>

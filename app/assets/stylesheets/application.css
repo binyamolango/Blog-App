@@ -1,15 +1,162 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+img {
+  max-width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+p {
+  font-size: 0.75rem;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border-radius: 3px;
+  border: 2px solid lightgray;
+  padding: 0.5em 1em;
+}
+
+button:hover {
+  border: 3px solid lightgray;
+}
+
+button:active {
+  border: 3px solid gray;
+}
+
+.container {
+  width: 80%;
+  max-width: 1080px;
+  margin: 5% auto;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5em;
+}
+
+/* style the users#index page */
+
+.user_img {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user_desc_cont {
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid lightgray;
+}
+
+.user_desc_cont:hover {
+  border: 2px solid lightgray;
+}
+
+.user_desc_cont:active {
+  border: 2px solid gray;
+}
+
+.user_desc {
+  width: 100%;
+  height: 100%;
+  padding: 0.5em 0.75em;
+  gap: 0;
+  justify-content: center;
+}
+
+.user_post_number {
+  text-align: right;
+}
+
+.user_name {
+  line-height: 0.8;
+}
+
+/* style the users#show page */
+
+.user_bio,
+.post_list_show {
+  margin: 2em 0;
+}
+
+.user_bio,
+.post_item,
+.post_comments,
+.post_detail {
+  padding: 0.3em 0.75em 0.75em 0.4em;
+  border-radius: 3px;
+  border: 1px solid lightgray;
+}
+
+.post_item:hover {
+  border: 2px solid lightgray;
+}
+
+.post_item:active {
+  border: 2px solid gray;
+}
+
+.show_title,
+.post_title {
+  margin-bottom: 1.5em;
+}
+
+.comments_likes {
+  font-size: 0.6rem;
+  text-align: right;
+}
+
+.btn_cont {
+  text-align: center;
+  margin-top: 1em;
+}
+
+/* style posts#index */
+
+.post_comments {
+  margin-top: 0.125em;
+}
+
+/* style post#show */
+
+.post_header .post_title {
+  margin: 0;
+}
+
+.post_header .comments_likes {
+  line-height: 0;
+}
+
+.post_body {
+  margin-top: 1.5em;
+}
