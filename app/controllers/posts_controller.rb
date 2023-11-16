@@ -7,6 +7,7 @@ class PostsController < ApplicationController
 
   def show
     @post = @user.posts.find(params[:id])
+    # @recent_comments = @post.recent_comments
   end
 
   private

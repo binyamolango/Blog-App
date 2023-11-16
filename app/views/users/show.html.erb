@@ -15,7 +15,7 @@
     <p class="bio_detail"><%= @user.bio %></p>
   </div>
 
-  <ul class="user_show_desc post_item">
+  <ul class="post_list">
     <% @recent_posts.each do |post| %>
       <li class="post_item">
         <h4><%= post.title %></h4>
@@ -31,5 +31,5 @@
   <div class="btn_cont">
     <button class="btn">See all posts</button>
   </div>
-  
+
 </div>
