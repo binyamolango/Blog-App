@@ -111,7 +111,8 @@ button:active {
 
 .user_bio,
 .post_item,
-.post_comments {
+.post_comments,
+.post_detail {
   padding: 0.3em 0.75em 0.75em 0.4em;
   border-radius: 3px;
   border: 1px solid lightgray;
@@ -148,4 +149,14 @@ button:active {
 
 /* style post#show */
 
+.post_header .post_title {
+  margin: 0;
+}
 
+.post_header .comments_likes {
+  line-height: 0;
+}
+
+.post_body {
+  margin-top: 1.5em;
+}

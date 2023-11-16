@@ -2,7 +2,7 @@
 
   <div class="post_detail">
     <div class="post_header">
-      <h4 class="post_title"><%= @post.title %> by <%= @post.author.name %></h4>
+      <p class="post_title"><%= @post.title %> by <%= @post.author.name %></p>
       <p class="comments_likes">
         Comments: <%= @post.comments_count %>, 
         Likes: <%= @post.likes_count %>
@@ -10,7 +10,7 @@
     </div>
 
     <div class="post_body">
-      <%= @post.text %>
+      <p><%= @post.text %></p>
     </div>
   </div>
 
@@ -18,7 +18,7 @@
     <ul class="post_comments_list">
       <% @post.comments.each do |comment| %>
         <li class="post_comments_item">
-          <%= comment.user.name %>: <%= comment.text %>
+          <p class="comment"><%= comment.user.name %>: <%= comment.text %></p>
         </li>
       <% end %>
     </ul>
