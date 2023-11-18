@@ -70,3 +70,9 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
 end
+
+gem "bootstrap_form", "~> 5.4"
+
+gem 'dartsass-sprockets'
+
+gem 'bootstrap', '~> 5.3.2'
