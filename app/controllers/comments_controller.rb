@@ -10,6 +10,6 @@ class CommentsController < ApplicationController
     @comment = Comment.new(user: @user, post: @post, text: params[:comment][:text])
     @comment.save
 
-    redirect_to user_posts_path(@user, @post)
+    redirect_to user_posts_path(@post.author.id, @post.id)
   end
 end

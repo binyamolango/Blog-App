@@ -10,6 +10,6 @@ class LikesController < ApplicationController
       flash.now[:error] = 'Error'
     end
 
-    redirect_to user_posts_path(@user.id, @post.id)
+    redirect_to user_posts_path(@post.author.id, @post.id)
   end
 end
