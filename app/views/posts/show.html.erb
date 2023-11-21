@@ -25,10 +25,16 @@
 
   <div class="post_comments">
     <ul class="post_comments_list">
-      <% @post.comments.each do |comment| %>
+      <% if @post.comments.length == 0 %>
         <li class="post_comments_item">
-          <p class="comment"><%= comment.user.name %>: <%= comment.text %></p>
+          <p class="comment">No comment</p>
         </li>
+      <% else %>
+        <% @post.comments.each do |comment| %>
+          <li class="post_comments_item">
+            <p class="comment"><%= comment.user.name %>: <%= comment.text %></p>
+          </li>
+        <% end %>
       <% end %>
     </ul>
   </div>
