@@ -31,8 +31,12 @@
         </a>
 
         <div class="post_comments">
-          <% post.recent_comments.each do |comment| %>
-            <p class="comment"><%= comment.user.name %>: <%= comment.text %></p>
+          <% if recent_comments.length == 0 %>
+            <p>No Comment</p>
+          <% else %>
+            <% post.recent_comments.each do |comment| %>
+              <p class="comment"><%= comment.user.name %>: <%= comment.text %></p>
+            <% end %>
           <% end %>
         </div>
 
