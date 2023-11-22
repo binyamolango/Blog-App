@@ -59,4 +59,10 @@ RSpec.describe 'posts#index', type: :feature do
     click_link("Comment")
     expect(current_path).to eq(new_user_post_comment_path(user_id: @user1.id, post_id: @user1.posts[0].id))
   end
+
+  scenario 'clicking on a like button redirects to the like create page' do
+    visit user_post_path(@user1, @post1)
+    click_button("Like")
+    expect(current_path).to eq(user_posts_path(@post1.author.id, @post1.id))
+  end
 end
