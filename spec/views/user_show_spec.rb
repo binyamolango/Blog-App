@@ -44,7 +44,7 @@ RSpec.describe 'users#show', type: :feature do
   scenario 'clicking on a user post redirects to the post show page' do
     visit user_path(@user1)
     click_link @user1.recent_posts[0].title
-    expect(current_path).to eq(user_post_path(@user1, @post3))
+    expect(current_path).to eq(user_post_path(@user1, @user1.recent_posts[0]))
   end
 
   scenario "clicking to see all posts button, it redirects to the user's post's index page" do

@@ -55,11 +55,11 @@ RSpec.describe 'posts#index', type: :feature do
     expect(page).to have_button('Add new post')
   end
 
-  # scenario 'clicking on a user post redirects to the post show page' do
-  #   visit user_path(@user1)
-  #   click_link @user1.recent_posts[0].title
-  #   expect(current_path).to eq(user_post_path(@user1, @post3))
-  # end
+  scenario 'clicking on a post redirects to the post show page' do
+    visit user_posts_path(@user1)
+    click_link @user1.posts[0].title
+    expect(current_path).to eq(user_post_path(@user1, @user1.posts[0]))
+  end
 
   # scenario "clicking to see all posts button, it redirects to the user's post's index page" do
   #   visit user_path(@user1)
