@@ -49,6 +49,11 @@ RSpec.describe 'posts#index', type: :feature do
     expect(page).to have_button('Comment')
   end
 
+  scenario 'display like button' do
+    visit user_post_path(@user1, @post1)
+    expect(page).to have_content('Like')
+  end
+
   # scenario 'clicking on a post redirects to the post show page' do
   #   visit user_posts_path(@user1)
   #   click_link @user1.posts[0].title
