@@ -13,15 +13,19 @@ RSpec.describe 'comments#new', type: :feature do
     expect(page).to have_content("Add new comment")
   end
 
-  # scenario 'clicking on a comment button redirects to the comment new page' do
-  #   visit user_post_path(@user1, @post1)
-  #   click_link("Comment")
-  #   expect(current_path).to eq(new_user_post_comment_path(user_id: @user1.id, post_id: @user1.posts[0].id))
-  # end
+  scenario 'fill comment form' do
+    visit new_user_post_comment_path(user_id: @post1.author.id, post_id: @post1.id)
+    expect(page).to have_field("comment_text", placeholder: "Add your comment here")
+  end
 
-  # scenario 'clicking on a like button redirects to the like create page' do
-  #   visit user_post_path(@user1, @post1)
-  #   click_button("Like")
-  #   expect(current_path).to eq(user_posts_path(@post1.author.id, @post1.id))
-  # end
+  scenario 'display Comment submit button' do
+    visit new_user_post_comment_path(user_id: @post1.author.id, post_id: @post1.id)
+    expect(page).to have_button("Comment")
+  end
+
+  scenario 'clicking on a comment button redirects to the post index page' do
+    visit new_user_post_comment_path(user_id: @post1.author.id, post_id: @post1.id)
+    click_button("Comment")
+    expect(current_path).to eq(user_posts_path(@post1.author.id, @post1.id))
+  end
 end
