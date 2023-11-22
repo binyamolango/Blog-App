@@ -8,7 +8,9 @@
     <div class="user_desc_cont">
       <a href=<%= user_url(@user.id) %>>
         <div class="user_desc col">
-          <h2 class="user_name"><%= @user.name %></h2>
+          <h2 class="user_name">
+            <%= link_to @user.name, user_path(@user) %>
+          </h2>
           <p class="user_post_number">Number of posts: <%= @user.posts_count %></p>  
         </div>
       </a>
