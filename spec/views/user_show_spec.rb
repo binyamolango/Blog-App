@@ -8,17 +8,17 @@ RSpec.describe 'users#show', type: :feature do
     @post3 = Post.create(author: @user1, title: 'Hello Hi', text: 'Awesome.', comments_count: 1, likes_count: 2)
   end
 
-  scenario 'display the username of all users' do
+  scenario 'display the username of the user' do
     visit user_path(@user1)
     expect(page).to have_content(@user1.name)
   end
 
-  scenario 'display the profile picture of each user' do
+  scenario 'display the profile picture of the user' do
     visit user_path(@user1)
     expect(page).to have_css("img[src='photo_url1']")
   end
 
-  scenario 'display the number of posts each user has written' do
+  scenario 'display the number of posts the user has written' do
     visit user_path(@user1)
     expect(page).to have_content("Number of posts: #{@user1.posts_count}")
   end
