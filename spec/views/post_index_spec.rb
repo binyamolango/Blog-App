@@ -58,4 +58,10 @@ RSpec.describe 'posts#index', type: :feature do
     click_link @user1.posts[0].title
     expect(current_path).to eq(user_post_path(@user1, @user1.posts[0]))
   end
+
+  scenario 'clicking on a Add new post redirects to the post new page' do
+    visit user_posts_path(@user1)
+    click_link('Add new post')
+    expect(current_path).to eq(new_user_post_path(@user1))
+  end
 end
