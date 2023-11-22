@@ -42,6 +42,7 @@ RSpec.describe 'posts#index', type: :feature do
 
   scenario 'display how many comments a post has' do
     visit user_posts_path(@user1)
+    expect(page).to have_content("Comments: #{@post1.comments_count}")
   end
 
   # scenario 'clicking on a user post redirects to the post show page' do
