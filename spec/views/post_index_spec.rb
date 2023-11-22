@@ -18,15 +18,15 @@ RSpec.describe 'posts#index', type: :feature do
     expect(page).to have_css("img[src='photo_url1']")
   end
 
+  scenario 'display the number of posts the user has written' do
+    visit user_posts_path(@user1)
+    expect(page).to have_content("Number of posts: #{@user1.posts_count}")
+  end
+
   scenario 'display the post title' do
     visit user_posts_path(@user1)
     expect(page).to have_content(@post1.title)
   end
-
-  # scenario 'display the number of posts the user has written' do
-  #   visit user_posts_path(@user1)
-  #   expect(page).to have_content("Number of posts: #{@user1.posts_count}")
-  # end
 
   # scenario 'clicking on a user post redirects to the post show page' do
   #   visit user_path(@user1)
