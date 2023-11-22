@@ -28,6 +28,22 @@ RSpec.describe 'posts#index', type: :feature do
     expect(page).to have_content(@post1.title)
   end
 
+  scenario 'display some of the post body' do
+    visit user_posts_path(@user1)
+    expect(page).to have_content(@post1.text)
+  end
+
+  scenario 'display the first comments on a post' do
+    visit user_posts_path(@user1)
+    @post1.recent_comments.each do |comment|
+      expect(page).to have_content(comment.text)
+    end
+  end
+
+  scenario 'display how many comments a post has' do
+    visit user_posts_path(@user1)
+  end
+
   # scenario 'clicking on a user post redirects to the post show page' do
   #   visit user_path(@user1)
   #   click_link @user1.recent_posts[0].title
