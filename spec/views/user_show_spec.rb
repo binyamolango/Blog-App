@@ -36,6 +36,11 @@ RSpec.describe 'users#show', type: :feature do
     end
   end
 
+  scenario 'display a button that lets me view all of a user posts' do
+    visit user_path(@user1)
+    expect(page).to have_button('See all posts')
+  end
+
   # scenario 'clicking on a user redirects to the user show page' do
   #   visit users_path
   #   click_link @user1.name
