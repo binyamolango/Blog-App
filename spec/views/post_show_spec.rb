@@ -54,9 +54,9 @@ RSpec.describe 'posts#index', type: :feature do
     expect(page).to have_content('Like')
   end
 
-  # scenario 'clicking on a post redirects to the post show page' do
-  #   visit user_posts_path(@user1)
-  #   click_link @user1.posts[0].title
-  #   expect(current_path).to eq(user_post_path(@user1, @user1.posts[0]))
-  # end
+  scenario 'clicking on a comment button redirects to the comment new page' do
+    visit user_post_path(@user1, @post1)
+    click_link("Comment")
+    expect(current_path).to eq(new_user_post_comment_path(user_id: @user1.id, post_id: @user1.posts[0].id))
+  end
 end
