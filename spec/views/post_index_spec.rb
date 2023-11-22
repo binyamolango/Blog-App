@@ -45,6 +45,16 @@ RSpec.describe 'posts#index', type: :feature do
     expect(page).to have_content("Comments: #{@post1.comments_count}")
   end
 
+  scenario 'display how many likes a post has' do
+    visit user_posts_path(@user1)
+    expect(page).to have_content("Likes: #{@post1.likes_count}")
+  end
+
+  scenario 'display Add new post button' do
+    visit user_posts_path(@user1)
+    expect(page).to have_button('Add new post')
+  end
+
   # scenario 'clicking on a user post redirects to the post show page' do
   #   visit user_path(@user1)
   #   click_link @user1.recent_posts[0].title

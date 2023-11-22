@@ -45,9 +45,7 @@
   </ul>
 
   <div class="btn_cont">
-    <a href=<%= new_user_post_url(user_id: @user.id) %>>
-      <button class="btn">Add new post</button>
-    </a>
+    <button class="btn"><%= link_to 'Add new post', new_user_post_path(@user) %></button>
   </div>
 
 </div>
