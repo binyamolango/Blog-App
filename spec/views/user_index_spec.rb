@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'users#index', type: :feature do
   before do
-    @user1 = User.create(name: 'Benjamin', photo: 'photo_url1')
-    @user2 = User.create(name: 'John', photo: 'photo_url2')
+    @user1 = User.create(name: 'Benjamin', photo: 'photo_url1', posts_count: 3)
+    @user2 = User.create(name: 'John', photo: 'photo_url2', posts_count: 2)
   end
 
   scenario 'display the username of all users' do
@@ -16,5 +16,11 @@ RSpec.describe 'users#index', type: :feature do
     visit users_path
     expect(page).to have_css("img[src='photo_url1']")
     expect(page).to have_css("img[src='photo_url2']")
+  end
+
+  scenario 'display the number of posts each user has written' do
+    visit users_path
+    expect(page).to have_content("Number of posts: #{@user1.posts_count}")
+    expect(page).to have_content("Number of posts: #{@user2.posts_count}")
   end
 end
