@@ -44,10 +44,10 @@ RSpec.describe 'posts#index', type: :feature do
     expect(page).to have_content(@post1.comments[0].text)
   end
 
-  # scenario 'display Add new post button' do
-  #   visit user_posts_path(@user1)
-  #   expect(page).to have_button('Add new post')
-  # end
+  scenario 'display comment button' do
+    visit user_post_path(@user1, @post1)
+    expect(page).to have_button('Comment')
+  end
 
   # scenario 'clicking on a post redirects to the post show page' do
   #   visit user_posts_path(@user1)
