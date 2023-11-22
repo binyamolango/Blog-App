@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'posts#index', type: :feature do
+RSpec.describe 'posts#show', type: :feature do
   before do
     @user1 = User.create(name: 'Benjamin', photo: 'photo_url1', bio: 'I am a software developer.', posts_count: 1)
     @user2 = User.create(name: 'John', photo: 'photo_url2', posts_count: 0)
