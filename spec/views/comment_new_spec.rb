@@ -21,9 +21,9 @@ RSpec.describe 'comments#new', type: :feature do
     expect(page).to have_button('Comment')
   end
 
-  scenario 'clicking on a comment button redirects to the post index page' do
+  scenario "clicking on a comment button redirects to the post's comments index page" do
     visit new_user_post_comment_path(user_id: @post1.author.id, post_id: @post1.id)
     click_button('Comment')
-    expect(current_path).to eq(user_posts_path(@post1.author.id, @post1.id))
-  end
+    expect(current_path).to eq(user_post_comments_path(@post1.author.id, @post1.id))
+  end  
 end

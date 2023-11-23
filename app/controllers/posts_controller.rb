@@ -15,12 +15,14 @@ class PostsController < ApplicationController
   end
 
   def create
-    @user = current_user
-    @post = Post.new(author_id: @user, title: params[:post][:title], text: params[:post][:text])
-    @post.author_id = @user.id
-    @post.save
-    redirect_to user_posts_path(@post.author.id, @post.id)
-  end
+    @user = User.find(params[:user_id])
+    @post = Post.new(author_id: @user.id , title: params[:post][:title], text: params[:post][:text])
+    if @post.save
+      redirect_to user_posts_path(@post.author.id)
+    else
+      render :new
+    end
+  end  
 
   private
 

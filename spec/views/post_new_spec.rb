@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'comments#new', type: :feature do
+RSpec.describe 'posts#new', type: :feature do
   before do
     @user1 = User.create(name: 'Benjamin', photo: 'photo_url1', bio: 'I am a software developer.', posts_count: 1)
     @post1 = Post.create(author: @user1, title: 'Hello', text: 'Good.', comments_count: 0, likes_count: 0)
@@ -27,7 +27,7 @@ RSpec.describe 'comments#new', type: :feature do
   end
 
   scenario 'clicking on a create button redirects to the post index page' do
-    visit new_user_post_path(user_id: @post1.author.id, post_id: @post1.id)
+    visit new_user_post_path(user_id: @post1.author.id)
     click_button('Create')
     expect(current_path).to eq(user_posts_path(@post1.author.id))
   end
