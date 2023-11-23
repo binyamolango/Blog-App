@@ -25,5 +25,5 @@ RSpec.describe 'comments#new', type: :feature do
     visit new_user_post_comment_path(user_id: @post1.author.id, post_id: @post1.id)
     click_button('Comment')
     expect(current_path).to eq(user_post_comments_path(@post1.author.id, @post1.id))
-  end  
+  end
 end
