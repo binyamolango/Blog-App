@@ -6,24 +6,31 @@ RSpec.describe 'comments#new', type: :feature do
     @post1 = Post.create(author: @user1, title: 'Hello', text: 'Good.', comments_count: 0, likes_count: 0)
   end
 
-  scenario 'display Add new comment' do
+  scenario 'display Add new post' do
     visit new_user_post_path(user_id: @post1.author.id, post_id: @post1.id)
     expect(page).to have_content("Add new post")
   end
 
-  # scenario 'fill comment form' do
-  #   visit new_user_post_comment_path(user_id: @post1.author.id, post_id: @post1.id)
-  #   expect(page).to have_field("comment_text", placeholder: "Add your comment here")
-  # end
+  scenario 'fill title area in the post form' do
+    visit new_user_post_path(user_id: @post1.author.id, post_id: @post1.id)
+    expect(page).to have_field("post_title", placeholder: 'Add your title here')
+  end
 
-  # scenario 'display Comment submit button' do
-  #   visit new_user_post_comment_path(user_id: @post1.author.id, post_id: @post1.id)
-  #   expect(page).to have_button("Comment")
-  # end
+  scenario 'fill text area in the post form' do
+    visit new_user_post_path(user_id: @post1.author.id, post_id: @post1.id)
+    expect(page).to have_field("post_text", placeholder: 'Add your text here')
+  end
 
-  # scenario 'clicking on a comment button redirects to the post index page' do
-  #   visit new_user_post_comment_path(user_id: @post1.author.id, post_id: @post1.id)
-  #   click_button("Comment")
-  #   expect(current_path).to eq(user_posts_path(@post1.author.id, @post1.id))
-  # end
+  scenario 'display create button' do
+    visit new_user_post_path(user_id: @post1.author.id, post_id: @post1.id)
+    expect(page).to have_button("Create")
+  end
+
+  scenario 'clicking on a create button redirects to the post index page' do
+    visit new_user_post_path(user_id: @post1.author.id, post_id: @post1.id)
+    click_button("Create")
+    puts current_path
+    puts user_posts_path(@post1.author.id)
+    expect(current_path).to eq(user_posts_path(@post1.author.id))
+  end
 end
