@@ -8,27 +8,27 @@ RSpec.describe 'comments#new', type: :feature do
 
   scenario 'display Add new post' do
     visit new_user_post_path(user_id: @post1.author.id, post_id: @post1.id)
-    expect(page).to have_content("Add new post")
+    expect(page).to have_content('Add new post')
   end
 
   scenario 'fill title area in the post form' do
     visit new_user_post_path(user_id: @post1.author.id, post_id: @post1.id)
-    expect(page).to have_field("post_title", placeholder: 'Add your title here')
+    expect(page).to have_field('post_title', placeholder: 'Add your title here')
   end
 
   scenario 'fill text area in the post form' do
     visit new_user_post_path(user_id: @post1.author.id, post_id: @post1.id)
-    expect(page).to have_field("post_text", placeholder: 'Add your text here')
+    expect(page).to have_field('post_text', placeholder: 'Add your text here')
   end
 
   scenario 'display create button' do
     visit new_user_post_path(user_id: @post1.author.id, post_id: @post1.id)
-    expect(page).to have_button("Create")
+    expect(page).to have_button('Create')
   end
 
   scenario 'clicking on a create button redirects to the post index page' do
     visit new_user_post_path(user_id: @post1.author.id, post_id: @post1.id)
-    click_button("Create")
+    click_button('Create')
     expect(current_path).to eq(user_posts_path(@post1.author.id))
   end
 end
