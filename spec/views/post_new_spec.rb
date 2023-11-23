@@ -29,8 +29,6 @@ RSpec.describe 'comments#new', type: :feature do
   scenario 'clicking on a create button redirects to the post index page' do
     visit new_user_post_path(user_id: @post1.author.id, post_id: @post1.id)
     click_button("Create")
-    puts current_path
-    puts user_posts_path(@post1.author.id)
     expect(current_path).to eq(user_posts_path(@post1.author.id))
   end
 end
