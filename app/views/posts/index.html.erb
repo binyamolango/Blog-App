@@ -1,17 +1,15 @@
 <div class="posts container">
-
+<h1>Here is a list of posts for a given user</h1>
   <div class="user_item row">
     <div class="user_img">
       <img src=<%= @user.photo %> alt="user_img">
     </div>
 
     <div class="user_desc_cont">
-      <a href=<%= user_url(@user.id) %>>
-        <div class="user_desc col">
-          <h2 class="user_name"><%= @user.name %></h2>
-          <p class="user_post_number">Number of posts: <%= @user.posts_count %></p>  
-        </div>
-      </a>
+      <div class="user_desc col">
+        <h2 class="user_name"><%= link_to @user.name, user_path(@user) %></h2>
+        <p class="user_post_number">Number of posts: <%= @user.posts_count %></p>  
+      </div>
     </div> 
   </div>
 
@@ -19,20 +17,22 @@
     <% @posts.each do |post| %>
       <li class="post_item_desc">
 
-        <a href=<%= user_post_url(user_id: @user.id, id: post.id) %>>
-          <div class="post_item">
-            <h4 class="post_title"><%= post.title %></h4>
-            <p class="post_text"><%= post.text %></p>
-            <p class="comments_likes">
-              Comments: <%= post.comments_count %>, 
-              Likes: <%= post.likes_count %>
-            </p>
-          </div>
-        </a>
+        <div class="post_item">
+          <h4 class="post_title"><%= link_to post.title, user_post_path(@user, post) %></h4>
+          <p class="post_text"><%= post.text %></p>
+          <p class="comments_likes">
+            Comments: <%= post.comments_count %>, 
+            Likes: <%= post.likes_count %>
+          </p>
+        </div>
 
         <div class="post_comments">
-          <% post.recent_comments.each do |comment| %>
-            <p class="comment"><%= comment.user.name %>: <%= comment.text %></p>
+          <% if post.recent_comments.length == 0 %>
+            <p>No Comment</p>
+          <% else %>
+            <% post.recent_comments.each do |comment| %>
+              <p class="comment"><%= comment.user.name %>: <%= comment.text %></p>
+            <% end %>
           <% end %>
         </div>
 
@@ -41,9 +41,7 @@
   </ul>
 
   <div class="btn_cont">
-    <a href=<%= new_user_post_url(user_id: @user.id) %>>
-      <button class="btn">Add new post</button>
-    </a>
+    <button class="btn"><%= link_to 'Add new post', new_user_post_path(@user) %></button>
   </div>
 
 </div>
