@@ -78,3 +78,5 @@ gem 'dartsass-sprockets'
 gem 'bootstrap', '~> 5.3.2'
 
 gem 'devise'
+
+gem 'letter_opener'
