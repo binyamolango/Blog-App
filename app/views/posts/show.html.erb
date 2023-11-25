@@ -1,5 +1,5 @@
 <div class="post_desc container">
-<h1>Here is a specific post for a given user</h1>
+  <h1>Here is a specific post for a given user</h1>
   <div class="post_detail">
     <div class="post_header">
       <h4 class="post_title"><%= @post.title %> by <%= @post.author.name %></h4>
@@ -12,31 +12,45 @@
     <div class="post_body">
       <p><%= @post.text %></p>
     </div>
+
+    <% if can? :destroy, @post %>
+      <%= link_to 'delete', polymorphic_url([@post.author, @post]), data: {
+        turbo_method: :delete,
+        turbo_confirm: 'Are you sure?'
+      }, class: 'btn btn-outline-danger btn-sm align-self-start' %>
+    <% end %>
   </div>
 
   <div class="comment-like-button">
-    <%= form_with model: @like, url: user_post_likes_path(@post.author, @post), scope: :like do |form|%>
+    <%= form_with model: @like, url: user_post_likes_path(@post.author, @post), scope: :like do |form| %>
       <%= form.submit 'Like', class: 'single-button' %>
     <% end %>
     <button type="button" class="single-button">
-      <%= link_to "Comment", new_user_post_comment_path(post_id: @post.id), { class: "user-link" } %>
+      <%= link_to "Comment", new_user_post_comment_path(post_id: @post.id), class: "user-link" %>
     </button>
   </div>
 
   <div class="post_comments">
     <ul class="post_comments_list">
-      <% if @post.comments.length == 0 %>
+      <% if @post.comments.empty? %>
         <li class="post_comments_item">
-          <p class="comment">No comment</p>
+          <p class="comment">No comments</p>
         </li>
       <% else %>
         <% @post.comments.each do |comment| %>
           <li class="post_comments_item">
             <p class="comment"><%= comment.user.name %>: <%= comment.text %></p>
+            <% if can? :destroy, comment %>
+              <div>
+                <%= link_to 'delete', polymorphic_url([comment.post.author, comment.post, comment]), data: {
+                  turbo_method: :delete,
+                  turbo_confirm: 'Are you sure?'
+                }, class: 'btn btn-danger btn-sm' %>
+              </div>
+            <% end %>
           </li>
         <% end %>
       <% end %>
     </ul>
   </div>
-
 </div>
