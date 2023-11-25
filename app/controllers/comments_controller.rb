@@ -1,17 +1,27 @@
 class CommentsController < ApplicationController
-  def new
-    @comment = Comment.new
-    @post = Post.find(params[:post_id])
+  load_and_authorize_resource
+
+  def index
+    @user = User.find(params[:user_id])
+    @post = @user.posts.find(params[:post_id])
+    @comments = @post.comments
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @comments }
+    end
   end
 
   def create
-    @user = current_user
-    @post = Post.find(params[:post_id])
-    @comment = Comment.new(user_id: @user.id, post_id: @post.id, text: params[:comment][:text])
-    if @comment.save
-      redirect_to user_post_comments_path(@post.author.id, @post.id)
-    else
-      render 'new'
+    post = Post.find(params[:post_id])
+    @comment = post.comments.new(author: current_user, **comment_params)
+    respond_to do |_format|
+      if @comment.save
+        flash[:notice] = 'Comment created successfully!'
+      else
+        flash[:alert] = 'Comment was not created!'
+      end
+      redirect_to user_post_path(post.author, post)
     end
   end
 end

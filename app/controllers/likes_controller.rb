@@ -1,15 +1,13 @@
 class LikesController < ApplicationController
   def create
-    @post = Post.find(params[:post_id])
-    @user = current_user
-    @like = Like.new(user: @user, post: @post)
-
+    post = Post.find(params[:post_id])
+    @like = post.likes.new(author: current_user)
     if @like.save
-      flash[:success] = 'You liked the post.'
+      flash[:notice] = 'Likes added succesfully!'
+      redirect_to user_post_path(post.author, post)
     else
-      flash.now[:error] = 'Error'
+      flash[:alert] = 'Likes not added!'
+      render :new, status: :unprocessable_entity
     end
-
-    redirect_to user_posts_path(@post.author.id, @post.id)
   end
 end

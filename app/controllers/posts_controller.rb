@@ -1,32 +1,58 @@
 class PostsController < ApplicationController
-  before_action :set_user
+  load_and_authorize_resource
 
   def index
-    @posts = @user.posts.includes(:comments)
+    @user = User.find(params[:user_id])
+    @posts = Post.includes(:author, :comments).where(author_id: params[:user_id])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @posts }
+    end
   end
 
   def show
-    @post = @user.posts.find(params[:id])
+    @user = User.find(params[:user_id])
+    @post = Post.includes(:author, :comments, :likes).find_by(author_id: @user.id, id: params[:id])
+
+    if @post
+      @comment = Comment.new
+      @like = Like.new
+    else
+      flash[:alert] = 'Post not found!'
+      redirect_to user_post_path(@user, params[:id])
+    end
   end
 
   def new
-    @user = current_user
     @post = Post.new
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @post = Post.new(author_id: @user.id, title: params[:post][:title], text: params[:post][:text])
-    if @post.save
-      redirect_to user_posts_path(@post.author.id)
-    else
-      render :new
+    @post = current_user.posts.new(post_params.merge(comments_counter: 0, likes_counter: 0))
+    respond_to do |format|
+      format.html do
+        if @post.save
+          flash[:notice] = 'Post created successfully!'
+          redirect_to user_post_path(current_user, @post)
+        else
+          flash[:error] = 'post not created!'
+          render :new, status: :unprocessable_entity
+        end
+      end
     end
+  end
+
+  def destroy
+    @post.destroy
+
+    flash[:notice] = 'Post deleted succesfully!'
+    redirect_to user_path(current_user), status: :see_other
   end
 
   private
 
-  def set_user
-    @user = User.find(params[:user_id])
+  def post_params
+    params.require(:post).permit(:title, :text)
   end
 end
