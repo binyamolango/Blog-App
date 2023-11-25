@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_user
+  load_and_authorize_resource
 
   def index
     @posts = @user.posts.includes(:comments)
@@ -22,6 +23,13 @@ class PostsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    @post.destroy
+
+    flash[:notice] = 'Post deleted succesfully!'
+    redirect_to user_path(current_user), status: :see_other
   end
 
   private
