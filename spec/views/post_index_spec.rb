@@ -4,6 +4,10 @@ RSpec.describe 'posts#index', type: :feature do
   before do
     @user1 = User.create(name: 'Benjamin', photo: 'photo_url1', bio: 'I am a software developer.', posts_count: 3)
     @post1 = Post.create(author: @user1, title: 'Hello', text: 'Good.', comments_count: 3, likes_count: 4)
+    @post2 = Post.create(author: @user1, title: 'Hello hi', text: 'Good.', comments_count: 3, likes_count: 4)
+    @post3 = Post.create(author: @user1, title: 'hiHello', text: 'Good.', comments_count: 3, likes_count: 4)
+    @post4 = Post.create(author: @user1, title: 'Hellohi', text: 'Good.', comments_count: 3, likes_count: 4)
+    @post5 = Post.create(author: @user1, title: 'Hellohey', text: 'Good.', comments_count: 3, likes_count: 4)
   end
 
   scenario 'display the username of the user' do
@@ -48,14 +52,30 @@ RSpec.describe 'posts#index', type: :feature do
     expect(page).to have_content("Likes: #{@post1.likes_count}")
   end
 
+  scenario 'display Add new post button' do
+    visit user_posts_path(@user1)
+    expect(page).to have_button('Add new post')
+  end
+
   scenario 'clicking on a post redirects to the post show page' do
     visit user_posts_path(@user1)
     click_link @user1.posts[0].title
     expect(current_path).to eq(user_post_path(@user1, @user1.posts[0]))
   end
 
-  scenario 'display pagination button' do
+  scenario 'clicking on a Add new post redirects to the post new page' do
     visit user_posts_path(@user1)
-    expect(page).to have_button('Pagination')
+    click_link('Add new post')
+    expect(current_path).to eq(new_user_post_path(@user1))
+  end
+
+  scenario 'clicking on a pagination button displays a section for the page if there are more posts than fit on the view' do
+    visit user_posts_path(@user1)
+
+    expect(page).to have_css('.pagination')
+
+    click_link('2') # Click on the second page link
+
+    expect(page).to have_current_path(user_posts_path(@user1, page: 2))
   end
 end
