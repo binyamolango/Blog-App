@@ -69,7 +69,7 @@ RSpec.describe 'posts#index', type: :feature do
     expect(current_path).to eq(new_user_post_path(@user1))
   end
 
-  scenario 'clicking on a pagination button displays a section for the page if there are more posts than fit on the view' do
+  scenario 'display pagination properly' do
     visit user_posts_path(@user1)
 
     expect(page).to have_css('.pagination')
