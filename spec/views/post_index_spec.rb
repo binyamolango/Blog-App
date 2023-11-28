@@ -48,20 +48,14 @@ RSpec.describe 'posts#index', type: :feature do
     expect(page).to have_content("Likes: #{@post1.likes_count}")
   end
 
-  scenario 'display Add new post button' do
-    visit user_posts_path(@user1)
-    expect(page).to have_button('Add new post')
-  end
-
   scenario 'clicking on a post redirects to the post show page' do
     visit user_posts_path(@user1)
     click_link @user1.posts[0].title
     expect(current_path).to eq(user_post_path(@user1, @user1.posts[0]))
   end
 
-  scenario 'clicking on a Add new post redirects to the post new page' do
+  scenario 'display pagination button' do
     visit user_posts_path(@user1)
-    click_link('Add new post')
-    expect(current_path).to eq(new_user_post_path(@user1))
+    expect(page).to have_button('Pagination')
   end
 end
