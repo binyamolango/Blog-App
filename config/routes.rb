@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # get 'up' => 'rails/health#show', as: :rails_health_check
   devise_scope :user do
     get '/users/sign_out', to: 'devise/sessions#destroy'
-    root to: 'devise/sessions#new'
+    root to: 'devise/registrations#new'
   end
 
   resources :users, only: [:index, :show] do
