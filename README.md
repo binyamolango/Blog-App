@@ -106,8 +106,10 @@ No deployment has been made yet.
 👤 **Binyam Yohannes**
 
 - GitHub: [@binyamolango ](https://github.com/binyamolango)
-- Twitter: [@BinyamOlango](https://twitter.com/BinyamOlango)
-- LinkedIn: [Binyam Yohannes](https://www.linkedin.com/in/binyamyohannes/)
+
+👤 **Muhammad Bilal**
+
+- GitHub: [@muhammadbilal ](https://github.com/BilalLiaquat7)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
