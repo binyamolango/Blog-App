@@ -221,27 +221,3 @@ button:active {
   border-radius: 8px;
   box-shadow: 2px 2px 11px rgba(0, 0, 0, 0.3);
 }
-
-.devise-container input {
-  width: 250px;
-  display: flex;
-  border: 1px solid white;
-  border-radius: 5px;
-  padding: 5px;
-  font-size: 1.1rem;
-}
-
-#user_remember_me {
-  width: auto;
-  margin-right: 10px;
-}
-
-.remember-field {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.remember-me-field {
-  flex: 1;
-}
