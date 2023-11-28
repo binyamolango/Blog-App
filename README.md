@@ -8,6 +8,7 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
+  - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -20,6 +21,7 @@
 - [🤝 Contributing](#contributing)
 - [⭐️ Show your support](#support)
 - [🙏 Acknowledgements](#acknowledgements)
+- [❓ FAQ](#faq)
 - [📝 License](#license)
 
 # 📖 Blog-App <a name="about-project"></a>
@@ -47,6 +49,13 @@
 - **Add likes to posts**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🚀 Live Demo <a name="live-demo"></a>
+
+- N/A
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
@@ -81,7 +90,7 @@ No command has existed until now.
 
 To run tests, run the following command:
 
-run `rspec`
+No tests have been created yet for this project.
 
 ### Deployment
 
@@ -92,16 +101,14 @@ No deployment has been made yet.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-## 👥 Authors <a name="authors"></a>
+## 👥 Author <a name="authors"></a>
 
 👤 **Binyam Yohannes**
 
 - GitHub: [@binyamolango ](https://github.com/binyamolango)
+- Twitter: [@BinyamOlango](https://twitter.com/BinyamOlango)
+- LinkedIn: [Binyam Yohannes](https://www.linkedin.com/in/binyamyohannes/)
 
-👤 **Muhammad Bilal**
-
-- GitHub: [@muhammadbilal ](https://github.com/BilalLiaquat7)
-  
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -133,6 +140,14 @@ If you like this project please give it a star.
 I would like to thank My God, family, friends, teammates, and Microverse.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## ❓ FAQ <a name="faq"></a>
+
+N/A
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 ## 📝 License <a name="license"></a>
 
