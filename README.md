@@ -100,7 +100,7 @@ No deployment has been made yet.
 
 👤 **Muhammad Bilal**
 
-- GitHub: [@binyamolango ](https://github.com/BilalLiaquat7)
+- GitHub: [@muhammadbilal ](https://github.com/BilalLiaquat7)
   
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
