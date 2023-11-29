@@ -7,9 +7,9 @@ class CreatePosts < ActiveRecord::Migration[7.1]
       t.bigint :likes_count, default: 0
       t.timestamps
       t.string :address
+      t.references :author, null: false, foreign_key: { to_table: :users, on_delete: :cascade }
     end
 
-    add_index :comments, :address
-    add_reference :posts, :author, null: false, on_delete: :cascade, foreign_key: { to_table: :users }
+    add_index :posts, :address
   end
 end

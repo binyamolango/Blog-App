@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :set_user
 
   def index
-    @posts = @user.posts.includes(:comments).accessible_by(current_ability)
+    @posts = @user.posts.includes(:comments).paginate(page: params[:page], per_page: 3).accessible_by(current_ability)
   end
 
   def show
