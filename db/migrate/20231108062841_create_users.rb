@@ -6,6 +6,10 @@ class CreateUsers < ActiveRecord::Migration[7.1]
       t.text :bio
       t.bigint :posts_count, default: 0
       t.timestamps
+      t.string :address
+      t.string :role, default: "default"
     end
+
+    add_index :users, :address
   end
 end

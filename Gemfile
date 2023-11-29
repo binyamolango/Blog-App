@@ -80,3 +80,7 @@ gem 'bootstrap', '~> 5.3.2'
 gem 'devise'
 
 gem 'letter_opener'
+
+gem 'cancancan'
+
+gem 'will_paginate'

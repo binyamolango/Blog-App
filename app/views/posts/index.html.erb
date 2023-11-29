@@ -24,6 +24,11 @@
             Comments: <%= post.comments_count %>, 
             Likes: <%= post.likes_count %>
           </p>
+          <% if can? :destroy, post %>
+            <%= form_with url: user_post_path(post.author, post), method: :delete do |form| %>
+              <%= form.submit 'Delete post', data: { confirm: 'Are you sure?' }, class: "delete-button btn" %>
+            <% end %>
+          <% end %>
         </div>
 
         <div class="post_comments">
@@ -32,6 +37,11 @@
           <% else %>
             <% post.recent_comments.each do |comment| %>
               <p class="comment"><%= comment.user.name %>: <%= comment.text %></p>
+              <% if can? :destroy, comment %>
+                <%= form_with url: user_post_comment_path(post.author, post, comment), method: :delete do |form| %>
+                  <%= form.submit 'Delete comment', data: { confirm: 'Are you sure?' }, class: "delete-button btn" %>
+                <% end %>
+              <% end %>
             <% end %>
           <% end %>
         </div>
@@ -43,5 +53,7 @@
   <div class="btn_cont">
     <button class="btn"><%= link_to 'Add new post', new_user_post_path(@user) %></button>
   </div>
+
+  <div class="pagination"><%= will_paginate @posts %></div>
 
 </div>

@@ -231,6 +231,11 @@ button:active {
   font-size: 1.1rem;
 }
 
+.radio_field input {
+  display: inline;
+  width: auto;
+}
+
 #user_remember_me {
   width: auto;
   margin-right: 10px;
@@ -242,6 +247,6 @@ button:active {
   align-items: center;
 }
 
-.remember-me-field {
+.remember-me-label {
   flex: 1;
 }
