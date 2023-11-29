@@ -12,6 +12,12 @@
     <div class="post_body">
       <p><%= @post.text %></p>
     </div>
+
+    <% if can? :destroy, post %>
+      <%= form_with url: user_post_path(post.author, post), method: :delete do |form| %>
+        <%= form.submit 'Delete post', data: { confirm: 'Are you sure?' }, class: "delete-button btn" %>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="comment-like-button">
