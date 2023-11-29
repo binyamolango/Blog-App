@@ -13,8 +13,8 @@
       <p><%= @post.text %></p>
     </div>
 
-    <% if can? :destroy, post %>
-      <%= form_with url: user_post_path(post.author, post), method: :delete do |form| %>
+    <% if can? :destroy, @post %>
+      <%= form_with url: user_post_path(@post.author, @post), method: :delete do |form| %>
         <%= form.submit 'Delete post', data: { confirm: 'Are you sure?' }, class: "delete-button btn" %>
       <% end %>
     <% end %>
@@ -39,6 +39,11 @@
         <% @post.comments.each do |comment| %>
           <li class="post_comments_item">
             <p class="comment"><%= comment.user.name %>: <%= comment.text %></p>
+            <% if can? :destroy, comment %>
+              <%= form_with   url: user_post_comment_path(@post.author, @post, comment), method: :delete do |form| %>
+                <%= form.submit 'Delete comment', data: { confirm: 'Are you sure?' }, class: "delete-button btn" %>
+              <% end %>
+            <% end %>
           </li>
         <% end %>
       <% end %>

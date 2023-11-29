@@ -37,6 +37,11 @@
           <% else %>
             <% post.recent_comments.each do |comment| %>
               <p class="comment"><%= comment.user.name %>: <%= comment.text %></p>
+              <% if can? :destroy, comment %>
+                <%= form_with url: user_post_comment_path(post.author, post, comment), method: :delete do |form| %>
+                  <%= form.submit 'Delete comment', data: { confirm: 'Are you sure?' }, class: "delete-button btn" %>
+                <% end %>
+              <% end %>
             <% end %>
           <% end %>
         </div>
