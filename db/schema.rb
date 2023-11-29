@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_23_212827) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_23_211053) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,8 +19,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_212827) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "address"
-    t.bigint "user_id", null: false
     t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
     t.index ["address"], name: "index_comments_on_address"
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
@@ -30,8 +30,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_212827) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "address"
-    t.bigint "user_id", null: false
     t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
     t.index ["address"], name: "index_likes_on_address"
     t.index ["post_id"], name: "index_likes_on_post_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
@@ -58,6 +58,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_212827) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "address"
+    t.string "role", default: "default"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -72,9 +73,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_212827) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "posts", on_delete: :cascade
   add_foreign_key "comments", "users"
-  add_foreign_key "likes", "posts"
+  add_foreign_key "likes", "posts", on_delete: :cascade
   add_foreign_key "likes", "users"
   add_foreign_key "posts", "users", column: "author_id", on_delete: :cascade
 end
