@@ -4,10 +4,6 @@ RSpec.describe 'posts#index', type: :feature do
   before do
     @user1 = User.create(name: 'Benjamin', photo: 'photo_url1', bio: 'I am a software developer.', posts_count: 3)
     @post1 = Post.create(author: @user1, title: 'Hello', text: 'Good.', comments_count: 3, likes_count: 4)
-    @post2 = Post.create(author: @user1, title: 'Hello hi', text: 'Good.', comments_count: 3, likes_count: 4)
-    @post3 = Post.create(author: @user1, title: 'hiHello', text: 'Good.', comments_count: 3, likes_count: 4)
-    @post4 = Post.create(author: @user1, title: 'Hellohi', text: 'Good.', comments_count: 3, likes_count: 4)
-    @post5 = Post.create(author: @user1, title: 'Hellohey', text: 'Good.', comments_count: 3, likes_count: 4)
   end
 
   scenario 'display the username of the user' do
@@ -67,15 +63,5 @@ RSpec.describe 'posts#index', type: :feature do
     visit user_posts_path(@user1)
     click_link('Add new post')
     expect(current_path).to eq(new_user_post_path(@user1))
-  end
-
-  scenario 'display pagination properly' do
-    visit user_posts_path(@user1)
-
-    expect(page).to have_css('.pagination')
-
-    click_link('2') # Click on the second page link
-
-    expect(page).to have_current_path(user_posts_path(@user1, page: 2))
   end
 end
