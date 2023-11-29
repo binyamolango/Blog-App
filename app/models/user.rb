@@ -17,6 +17,6 @@ class User < ApplicationRecord
   Roles = [:admin, :default]
 
   def is?(requested_role)
-    self.role == requested_role.to_s
+    self.role == requested_role
   end
 end

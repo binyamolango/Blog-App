@@ -25,14 +25,14 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = current_user.posts.find_by(id: params[:id])
+    @post = @user.posts.find_by(id: params[:id])
     if @post
       @post.destroy
       flash[:notice] = 'Post was successfully deleted.'
-      redirect_to user_posts_path(current_user)
+      redirect_to user_posts_path(@user)
     else
       flash[:alert] = 'Post could not be found.'
-      redirect_to user_posts_path(current_user)
+      redirect_to user_posts_path(@user)
     end
   end  
 
