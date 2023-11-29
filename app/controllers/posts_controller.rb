@@ -1,32 +1,48 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_user
 
   def index
-    @posts = @user.posts.includes(:comments)
+    @posts = @user.posts.includes(:comments).accessible_by(current_ability)
   end
 
   def show
     @post = @user.posts.find(params[:id])
+    authorize! :read, @post
   end
 
   def new
-    @user = current_user
     @post = Post.new
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @post = Post.new(author_id: @user.id, title: params[:post][:title], text: params[:post][:text])
+    @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to user_posts_path(@post.author.id)
+      redirect_to user_posts_path(current_user)
     else
       render :new
     end
   end
 
+  def destroy
+    @post = current_user.posts.find_by(id: params[:id])
+    if @post
+      @post.destroy
+      flash[:notice] = 'Post was successfully deleted.'
+      redirect_to user_posts_path(current_user)
+    else
+      flash[:alert] = 'Post could not be found.'
+      redirect_to user_posts_path(current_user)
+    end
+  end  
+
   private
 
   def set_user
     @user = User.find(params[:user_id])
+  end
+
+  def post_params
+    params.require(:post).permit(:title, :text)
   end
 end
