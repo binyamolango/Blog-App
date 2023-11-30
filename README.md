@@ -12,6 +12,7 @@
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
   - [Install](#install)
+  - [Database](#database)
   - [Usage](#usage)
   - [Run tests](#run-tests)
 - [👥 Authors](#authors)
@@ -83,7 +84,7 @@ Install this project with:
   bundle install
 ```
 
-### 💾 Database
+### Database
 
 Create the databases and run migrations with:
 
