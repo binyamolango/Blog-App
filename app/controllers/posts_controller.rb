@@ -3,12 +3,16 @@ class PostsController < ApplicationController
   before_action :set_user
 
   def index
-    @posts = @user.posts.includes(:comments).paginate(page: params[:page], per_page: 3).accessible_by(current_ability)
+    @posts = Post.includes(:author, :comments).where(author_id: params[:user_id]).paginate(page: params[:page], per_page: 3)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @posts }
+    end
   end
 
   def show
     @post = @user.posts.find(params[:id])
-    authorize! :read, @post
   end
 
   def new
