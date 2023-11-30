@@ -7,6 +7,7 @@ class Api::CommentsController < ApplicationController
     @comments = @post.comments
     render json: @comments
   end
+
   def create
     post = Post.find(params[:post_id])
     User.find(comment_params[:user_id])

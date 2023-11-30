@@ -5,14 +5,14 @@ class Ability
     can :read, Post
     can :read, Comment
     can :create, Comment
-    can :update, Comment, user: user
+    can(:update, Comment, user:)
 
-    if user.is?("default")  # additional permissions for logged in users (they can read their own posts)
+    if user.is?('default') # additional permissions for logged in users (they can read their own posts)
       can :create, Post, author: user
       can :destroy, Post, author: user
       can :update, Post, author: user
 
-      can :destroy, Comment, user: user
+      can :destroy, Comment, user:
     else
       can :create, Post
       can :destroy, Post
@@ -21,5 +21,4 @@ class Ability
       can :destroy, Comment
     end
   end
-
 end
