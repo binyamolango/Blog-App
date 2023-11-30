@@ -29,12 +29,11 @@ class PostsController < ApplicationController
     if @post
       @post.destroy
       flash[:notice] = 'Post was successfully deleted.'
-      redirect_to user_posts_path(@user)
     else
       flash[:alert] = 'Post could not be found.'
-      redirect_to user_posts_path(@user)
     end
-  end  
+    redirect_to user_posts_path(@user)
+  end
 
   private
 

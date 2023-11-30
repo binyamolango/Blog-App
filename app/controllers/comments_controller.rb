@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     @user = current_user
     @post = Post.find(params[:post_id])
     @comment = Comment.new(comment_params.merge(user_id: @user.id, post_id: @post.id))
-    
+
     if @comment.save
       redirect_to user_posts_path(@post.author)
     else
@@ -23,16 +23,15 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     if @comment
       @comment.destroy
-      flash[:notice] = "Comment deleted successfully"
-      redirect_to user_posts_path(@post.author)
+      flash[:notice] = 'Comment deleted successfully'
     else
-      flash[:notice] = "Comment could not be found"
-      redirect_to user_posts_path(@post.author)
+      flash[:notice] = 'Comment could not be found'
     end
+    redirect_to user_posts_path(@post.author)
   end
 
   private
-  
+
   def comment_params
     params.require(:comment).permit(:text)
   end
