@@ -84,3 +84,5 @@ gem 'letter_opener'
 gem 'cancancan'
 
 gem 'will_paginate'
+
+gem 'rswag'
