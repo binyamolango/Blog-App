@@ -12,15 +12,15 @@ RSpec.describe 'Api::Comments', type: :request do
 
       response '200', 'Comments found' do
         schema type: :array,
-          items: {
-            type: :object,
-            properties: {
-              id: { type: :integer },
-              text: { type: :string },
-              user_id: { type: :integer }
-            },
-            required: ['id', 'text', 'user_id']
-          }
+               items: {
+                 type: :object,
+                 properties: {
+                   id: { type: :integer },
+                   text: { type: :string },
+                   user_id: { type: :integer }
+                 },
+                 required: %w[id text user_id]
+               }
 
         examples 'application/json' => [
           { id: 1, text: 'Great post!', user_id: 1 },
@@ -47,19 +47,19 @@ RSpec.describe 'Api::Comments', type: :request do
           text: { type: :string },
           user_id: { type: :integer }
         },
-        required: ['text', 'user_id']
+        required: %w[text user_id]
       }
 
       response '201', 'Comment created' do
         let(:comment) { { text: 'Awesome post!', user_id: 1 } }
 
         schema type: :object,
-          properties: {
-            id: { type: :integer },
-            text: { type: :string },
-            user_id: { type: :integer }
-          },
-          required: ['id', 'text', 'user_id']
+               properties: {
+                 id: { type: :integer },
+                 text: { type: :string },
+                 user_id: { type: :integer }
+               },
+               required: %w[id text user_id]
 
         examples 'application/json' => { id: 3, text: 'Awesome post!', user_id: 1 }
 
@@ -70,10 +70,10 @@ RSpec.describe 'Api::Comments', type: :request do
         let(:comment) { { text: '', user_id: 1 } }
 
         schema type: :object,
-          properties: {
-            error: { type: :string }
-          },
-          required: ['error']
+               properties: {
+                 error: { type: :string }
+               },
+               required: ['error']
 
         examples 'application/json' => { error: "Text can't be blank" }
 

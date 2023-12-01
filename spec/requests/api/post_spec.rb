@@ -1,9 +1,7 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/posts', type: :request do
-
   path '/api/users/{user_id}/posts' do
-
     get 'Retrieves all posts for a specific user' do
       tags 'Posts'
       produces 'application/json'
@@ -41,20 +39,16 @@ RSpec.describe 'api/posts', type: :request do
                }
 
         let(:user_id) { User.create(name: 'Sample User').id }
-        let!(:posts) do
-          create_list(:post, 3, author: User.find(user_id))
-        end
+        let!(:posts) { create_list(:post, 3, author: User.find(user_id)) }
 
         run_test!
       end
 
       response '404', 'user not found' do
         let(:user_id) { 'invalid' }
+
         run_test!
       end
-
     end
-
   end
-
 end
