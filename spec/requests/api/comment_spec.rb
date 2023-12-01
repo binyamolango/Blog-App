@@ -1,53 +1,84 @@
 require 'swagger_helper'
 
-RSpec.describe 'api/comments', type: :request do
-  # create some initial data
-  let!(:user) { create(:user) }
-  let!(:post) { create(:post, user: user) }
-  let!(:comments) { create_list(:comment, 10, post: post, user: user) }
-  let(:post_id) { post.id }
-  let(:user_id) { user.id }
-  let(:comment_id) { comments.first.id }
-  let(:headers) { { "ACCEPT" => "application/json" } } # add any required headers
+RSpec.describe 'Api::Comments', type: :request do
+  path '/api/users/{user_id}/posts/{post_id}/comments' do
+    parameter name: 'user_id', in: :path, type: :integer, required: true
+    parameter name: 'post_id', in: :path, type: :integer, required: true
 
-  # Test suite for GET /users/:user_id/posts/:post_id/comments
-  describe 'GET /users/:user_id/posts/:post_id/comments' do
-    # make HTTP get request before each example
-    before { get "/users/#{user_id}/posts/#{post_id}/comments", headers: headers }
+    get 'Retrieves all comments for a post' do
+      tags 'Comments'
+      produces 'application/json'
+      description 'Retrieves all comments for a specific post.'
 
-    it 'returns comments' do
-      expect(response).to have_http_status(200)
-      expect(JSON.parse(response.body).size).to eq(10)
+      response '200', 'Comments found' do
+        schema type: :array,
+          items: {
+            type: :object,
+            properties: {
+              id: { type: :integer },
+              text: { type: :string },
+              user_id: { type: :integer }
+            },
+            required: ['id', 'text', 'user_id']
+          }
+
+        examples 'application/json' => [
+          { id: 1, text: 'Great post!', user_id: 1 },
+          { id: 2, text: 'Nice work!', user_id: 2 }
+        ]
+
+        run_test!
+      end
+
+      response '404', 'Post not found' do
+        run_test!
+      end
     end
 
-    it 'returns status code 200' do
-      expect(response).to have_http_status(200)
+    post 'Creates a new comment for a post' do
+      tags 'Comments'
+      consumes 'application/json'
+      produces 'application/json'
+      description 'Creates a new comment for a specific post.'
+
+      parameter name: :comment, in: :body, schema: {
+        type: :object,
+        properties: {
+          text: { type: :string },
+          user_id: { type: :integer }
+        },
+        required: ['text', 'user_id']
+      }
+
+      response '201', 'Comment created' do
+        let(:comment) { { text: 'Awesome post!', user_id: 1 } }
+
+        schema type: :object,
+          properties: {
+            id: { type: :integer },
+            text: { type: :string },
+            user_id: { type: :integer }
+          },
+          required: ['id', 'text', 'user_id']
+
+        examples 'application/json' => { id: 3, text: 'Awesome post!', user_id: 1 }
+
+        run_test!
+      end
+
+      response '422', 'Invalid parameters' do
+        let(:comment) { { text: '', user_id: 1 } }
+
+        schema type: :object,
+          properties: {
+            error: { type: :string }
+          },
+          required: ['error']
+
+        examples 'application/json' => { error: "Text can't be blank" }
+
+        run_test!
+      end
     end
   end
-
-  # Test suite for POST /posts/:post_id/comments
-  describe 'POST /posts/:post_id/comments' do
-    let(:valid_attributes) { { comment: { text: 'Visit Narnia', user_id: user_id } } }
-
-    context 'when the request is valid' do
-      before do
-        post "/posts/#{post_id}/comments", params: valid_attributes, headers: headers
-      end
-
-      it 'creates a comment' do
-        expect(response).to have_http_status(201)
-        expect(JSON.parse(response.body)['text']).to eq('Visit Narnia')
-      end
-    end
-
-    context 'when the request is invalid' do
-      before { post "/posts/#{post_id}/comments", params: { comment: { text: nil } }, headers: headers }
-
-      it 'returns status code 422' do
-        expect(response).to have_http_status(422)
-        expect(JSON.parse(response.body)).to include("errors")
-      end
-    end
-  end
-
 end
