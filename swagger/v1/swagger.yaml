@@ -1,0 +1,173 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/users/{user_id}/posts/{post_id}/comments":
+    parameters:
+    - name: user_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    - name: post_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: Retrieves all comments for a post
+      tags:
+      - Comments
+      description: Retrieves all comments for a specific post.
+      responses:
+        '200':
+          description: Comments found
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                  - id: 1
+                    text: Great post!
+                    user_id: 1
+                  - id: 2
+                    text: Nice work!
+                    user_id: 2
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    text:
+                      type: string
+                    user_id:
+                      type: integer
+                  required:
+                  - id
+                  - text
+                  - user_id
+        '404':
+          description: Post not found
+    post:
+      summary: Creates a new comment for a post
+      tags:
+      - Comments
+      description: Creates a new comment for a specific post.
+      parameters: []
+      responses:
+        '201':
+          description: Comment created
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    id: 3
+                    text: Awesome post!
+                    user_id: 1
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  text:
+                    type: string
+                  user_id:
+                    type: integer
+                required:
+                - id
+                - text
+                - user_id
+        '422':
+          description: Invalid parameters
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    error: Text can't be blank
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                user_id:
+                  type: integer
+              required:
+              - text
+              - user_id
+  "/api/users/{user_id}/posts":
+    get:
+      summary: Retrieves all posts for a specific user
+      tags:
+      - Posts
+      parameters:
+      - name: user_id
+        in: path
+        description: user_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: posts found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  posts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        title:
+                          type: string
+                        text:
+                          type: string
+                        created_at:
+                          type: string
+                          format: date-time
+                        updated_at:
+                          type: string
+                          format: date-time
+                        author_id:
+                          type: integer
+                        comments:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                              text:
+                                type: string
+                              created_at:
+                                type: string
+                                format: date-time
+                              updated_at:
+                                type: string
+                                format: date-time
+        '404':
+          description: user not found
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
